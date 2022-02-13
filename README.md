@@ -15,6 +15,10 @@
 
     `npm run tsc`
 
+- to test app
+
+    `npm run test`
+
 ## about
 
     this project is a Fully secure Store api password-decryption and JWT authorization
