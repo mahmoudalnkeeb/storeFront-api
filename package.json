@@ -4,9 +4,11 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
+    "start": "npm run tsc && node dist/server.js",
     "test": "jasmine-ts",
     "tsc": "tsc",
-    "start": "npm run tsc && node dist/server.js"
+    "prettier": "prettier --write ./src/**/*.ts",
+    "lint": "eslint .eslintrc.js src/**/*.ts"
   },
   "author": "Udacity",
   "license": "ISC",
