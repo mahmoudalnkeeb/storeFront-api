@@ -1,28 +1,35 @@
 # Store RESTAPI
 
-[Installation](#install)
-
 [About project](#about)
 
+[Installation](#Installation)
+
 [Features](#features)
-
-## install
-- to install all required dependencies
-
-    `npm install`
-
-- to build production && start
-
-    `npm run tsc`
-
-- to test app
-
-    `npm run test`
 
 ## about
 
     this project is a Fully secure Store api password-decryption and JWT authorization
     created using Express and postgreSQL Database tested using Jasmine.
+
+
+## Installation
+- to install all required dependencies
+
+    `npm install`
+
+- migrate database 
+
+    `npm i -g db-migrate db-migrate-pg`
+    
+    `db-migrate up`
+
+- to build production && start
+
+    `npm run start`
+
+- to test app
+
+    `npm run test`
 
 ## features
 
