@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const router = Router();
-import * as productsRoutes from '../../controllers/products';
+import * as productsRoutes from '../../handlers/products';
 import {verify} from '../../middlewares/authorization'; 
 
 // POST route to add new product

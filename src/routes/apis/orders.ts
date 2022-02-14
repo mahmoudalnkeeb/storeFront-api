@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const router = Router();
-import * as ordersRoutes from '../../controllers/orders';
+import * as ordersRoutes from '../../handlers/orders';
 import {verify} from '../../middlewares/authorization'
 
 // POST route to add new order

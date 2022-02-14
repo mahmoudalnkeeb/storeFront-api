@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const router = Router();
-import * as userRoutes from '../../controllers/users';
+import * as userRoutes from '../../handlers/users';
 import * as jwt from '../../middlewares/authorization'
 
 // POST route to add new user
