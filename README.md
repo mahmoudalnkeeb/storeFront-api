@@ -2,7 +2,7 @@
 
 [About project](#about)
 
-[Installation](#Installation)
+[Installation](#Installation-and-other-scripts-available)
 
 [Features](#features)
 
@@ -12,8 +12,7 @@
     created using Express and postgreSQL Database tested using Jasmine.
 
 
-## Installation 
-## and other scripts available
+## Installation and other scripts available
 
 - ### to install all required dependencies
 
