@@ -13,9 +13,9 @@ router.get('/',jwt.verify,userRoutes.index );
 router.get('/:id',jwt.verify,userRoutes.show);
 
 // Put route to update user's data
-router.put('/' ,jwt.verify,userRoutes.update);
+router.put('/', jwt.verify, userRoutes.update);
 
 // Delete route to delete user's data
-router.delete('/:id',jwt.verify,userRoutes.destroy);
+router.delete('/:id', jwt.verify, userRoutes.destroy);
 
 export default router;

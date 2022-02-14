@@ -45,7 +45,6 @@ export async function addOrder(
     const order: Order = {
       quantity: req.body.quantity,
       order_status: req.body.quantity,
-      product_id: req.body.product_id,
       user_id: req.body.user_id,
     };
     const newOrder = await Orders.addOrder(order);

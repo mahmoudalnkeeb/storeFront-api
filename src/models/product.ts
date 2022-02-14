@@ -6,20 +6,20 @@ export interface Product {
   category: string;
 }
 export class ProductsModel {
-  // Show all Products 
+  // Show all Products
 
-  async index(): Promise<Product> {
+  async index(): Promise<Product[]> {
     try {
       const sql = 'SELECT * FROM products';
       const con = await client.connect();
       const res = await con.query(sql);
-      return res.rows[0];
+      return res.rows;
     } catch (error) {
       throw error;
     }
   }
 
-  // Show one Product with id 
+  // Show one Product with id
 
   async show(id: number): Promise<Product> {
     try {
@@ -32,7 +32,7 @@ export class ProductsModel {
     }
   }
 
-  // Add Product 
+  // Add Product
 
   async create(product: Product): Promise<Product> {
     try {
@@ -50,7 +50,7 @@ export class ProductsModel {
     }
   }
 
-  // Update Product 
+  // Update Product
 
   async update(product: Product): Promise<Product> {
     try {
@@ -69,7 +69,7 @@ export class ProductsModel {
     }
   }
 
-  // Delete Product 
+  // Delete Product
 
   async destroy(id: number): Promise<Product> {
     try {

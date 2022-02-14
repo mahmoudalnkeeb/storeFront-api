@@ -12,35 +12,68 @@
     created using Express and postgreSQL Database tested using Jasmine.
 
 
-## Installation
-- to install all required dependencies
+## Installation and other scripts available
+
+- ### to install all required dependencies
 
     `npm install`
 
-- migrate database 
+- ### migrate production and test database
+
+    first create production and testing database 
+    and update database.json with correct data
+    and then run.
 
     `npm i -g db-migrate db-migrate-pg`
     
     `db-migrate up`
 
-- to build production && start
+    `db-migrate up --env test` 
+
+
+- ### enviroment variables
+
+<code>
+
+    POSTGRES_HOST=database host
+    POSTGRES_USER=database user
+    POSTGRES_PASS=database password
+    POSTGRES_DB=production database name
+    POSTGRES_TEST_DB=testing database name
+    ENV=dev
+    SALT=SALT added to password 
+    HASH_ROUNDS="10"
+    SECRET=secert string to make token signeture
+
+</code>
+
+
+- ### to build production && start
 
     `npm run start`
 
-- to test app
+- ### to test app
 
     `npm run test`
 
+- ### linting 
+
+    `npm run lint`
+
+- ### prettify code 
+
+    `npm run prettier`
+
 ## features
 
-- users 
+- #### users 
     - create user
     - show all users => token required
     - show user by id => token required 
     - update user data => token required 
     - delete user data => token required
 
-- products
+- #### products
     - create product => token required 
     - show all products 
     - show product by id 
@@ -48,7 +81,7 @@
     - delete product => token required 
     - show products by category
     - show most ordered products
-- orders 
+- #### orders 
     - create orders by user => token required
     - show order by user => token required 
     - show completed orders by users => token required 

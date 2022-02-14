@@ -8,78 +8,79 @@ export interface User {
     hash_string:string;
 }
 export class UsersModel {
+  // Show all Users
 
-  // Show all Users 
-
-  async index(): Promise<User | Error> {
+  async index(): Promise<User[] | Error> {
     try {
-      const sql = 'SELECT * FROM users RETURNING *';
+      const sql = 'SELECT * FROM users';
       const con = await client.connect();
-      console.log(client);
       const res = await con.query(sql);
-      const data = res.rows[0];
-      con.release()
+      const data = res.rows;
+      con.release();
       return data;
     } catch (error) {
       return new Error(`something went wrong ${error}`);
     }
   }
 
-  // Show one User with id 
+  // Show one User with id
 
   async show(id: number): Promise<User | Error> {
     try {
-      const sql = 'SELECT * FROM users WHERE id = $1 RETURNING *';
+      const sql = 'SELECT * FROM users WHERE id = $1';
       const con = await client.connect();
       const res = await con.query(sql, [id]);
       const data = res.rows[0];
-      con.release()
+      con.release();
       return data;
     } catch (error) {
       return new Error(`something went wrong ${error}`);
     }
   }
 
-  // Add User 
+  // Add User
 
   async create(user: User): Promise<User | Error> {
     try {
       const sql =
         'INSERT INTO users(first_name , last_name , email , hash_string) VALUES($1 , $2 , $3 , $4) RETURNING *';
       const con = await client.connect();
-      const hashed = hash(user.hash_string)
+      const hashed = hash(user.hash_string);
       const res = await con.query(sql, [
         user.first_name,
         user.last_name,
         user.email,
-        hashed
+        hashed,
       ]);
       const data = res.rows[0];
-      console.log(hashed);
-      // con.release()
+      con.release();
       return data;
     } catch (error) {
       return new Error(`something went wrong ${error}`);
     }
   }
 
-  // Update User 
+  // Update User
 
-  async update(firstName:string , lastName:string , email:string): Promise<User | Error> {
+  async update(
+    firstName: string,
+    lastName: string,
+    email: string
+  ): Promise<User | Error> {
     try {
       const sql =
         'UPDATE users SET first_name = $1 , last_name = $2 WHERE email = $3 RETURNING *';
       const con = await client.connect();
       const res = await con.query(sql, [firstName, lastName, email]);
       const data = res.rows[0];
-      con.release()
+      con.release();
       return data;
     } catch (error) {
       return new Error(`something went wrong ${error}`);
     }
   }
 
-  // Delete User 
+  // Delete User
 
   async destroy(id: number): Promise<User | Error> {
     try {
@@ -87,7 +88,7 @@ export class UsersModel {
       const con = await client.connect();
       const res = await con.query(sql, [id]);
       const data = res.rows[0];
-      con.release()
+      con.release();
       return data;
     } catch (error) {
       return new Error(`something went wrong ${error}`);

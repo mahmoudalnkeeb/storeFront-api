@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-
 dotenv.config();
+
 const secret = process.env.SECRET;
 function sign(req: Request, res: Response, next: NextFunction) {
   try {
