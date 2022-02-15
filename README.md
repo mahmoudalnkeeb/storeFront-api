@@ -62,10 +62,15 @@
   
     `
     "spec_files": [
+
     "../src/models/tests/userSpec.ts",
+
     "../src/models/tests/productSpec.ts",
+
     "../src/models/tests/orderSpec.ts",
+
     "../src/handlers/tests/usersSpec.ts",
+    
     "../src/**/tests/*[sS]pec.ts"]
     `
 
