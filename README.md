@@ -2,7 +2,7 @@
 
 [About project](#about)
 
-[Installation](#Installation)
+[Installation](#Installation-and-other-scripts-available)
 
 [Features](#features)
 
