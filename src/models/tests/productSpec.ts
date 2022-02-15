@@ -1,12 +1,7 @@
 import { Product, ProductsModel } from '../product';
 
 const product = new ProductsModel();
-let originalTimeout: number;
 
-beforeEach(function () {
-  originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
-});
 describe('product model test', () => {
   it('should have an index method', () => {
     expect(product.index).toBeDefined();
@@ -36,7 +31,7 @@ describe('product model test', () => {
     });
 
     expect(res).toEqual({
-      id: 2,
+      id: 1,
       name: 'book',
       price: 15,
       category: 'books',
@@ -49,7 +44,7 @@ describe('product model test', () => {
 
     expect(res).toEqual([
       {
-        id: 2,
+        id: 1,
         name: 'book',
         price: 15,
         category: 'books',
@@ -59,10 +54,10 @@ describe('product model test', () => {
   });
 
   it('should return product with id = 1', async (done) => {
-    const res = await product.show(2);
+    const res = await product.show(1);
 
     expect(res).toEqual({
-      id: 2,
+      id: 1,
       name: 'book',
       price: 15,
       category: 'books',
@@ -72,14 +67,14 @@ describe('product model test', () => {
 
   it('should update product', async (done) => {
     const res = await product.update({
-      id: 2,
+      id: 1,
       name: 'book1',
       price: 10,
       category: 'books',
     });
 
     expect(res).toEqual({
-      id: 2,
+      id: 1,
       name: 'book1',
       price: 10,
       category: 'books',
@@ -88,17 +83,14 @@ describe('product model test', () => {
   });
 
   it('should delete product and return empty array', async (done) => {
-    const res = await product.destroy(2);
+    const res = await product.destroy(1);
 
     expect(res).toEqual({
-      id: 2,
+      id: 1,
       name: 'book1',
       price: 10,
       category: 'books',
     });
     done();
-  });
-  afterEach(function () {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 });

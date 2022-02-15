@@ -2,12 +2,7 @@ import { UsersModel } from '../user';
 
 const user = new UsersModel();
 describe('user model test', () => {
-  let originalTimeout: number;
-
-  beforeEach(function () {
-    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
-  });
+  
   it('should have an index method', () => {
     expect(user.index).toBeDefined();
   });
@@ -100,9 +95,5 @@ describe('user model test', () => {
       email: 'mail@email.com',
     });
     done();
-  });
-
-  afterEach(function () {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 });

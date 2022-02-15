@@ -1,47 +1,58 @@
+import jwt from 'jsonwebtoken';
 import supertest from 'supertest';
 import app from '../../server';
 const request = supertest(app);
+import dotenv from 'dotenv';
+dotenv.config();
 
-let token: string;
-
-describe('store api', () => {
-  it('add user should return success code', async (done) => {
+describe('store api users', () => {
+  let token: string;
+  beforeAll(() => {
+    const secret = process.env.SECRET;
+    //@ts-ignore
+    token = jwt.sign({ firstname: 'name0', lastname: 'name0' }, secret);
+  });
+  it('add user should return success code', async () => {
     const res = await request.post('/users').send({
-      firstname: 'firstname',
-      lastname: 'lastname',
-      email: 'name@mail.com',
+      firstname: 'name0',
+      lastname: 'name0',
+      email: 'mail@email.com',
       password: 'password',
     });
-    token = res.body.token;
+
     expect(res.statusCode).toBe(200);
-    done();
   });
-  it('index should return success code', async (done) => {
-    const res = await request.get('/users').set({ authorization: token });
+
+  it('index should return success code', async () => {
+    const res = await request.get('/users').set({
+      authorization: token,
+    });
     expect(res.statusCode).toBe(200);
-    done();
   });
-  it('show user should return success code', async (done) => {
-    const res = await request.get('/users/1').set({ authorization: token });
+  it('show user should return success code', async () => {
+    const res = await request.get('/users/2').set({
+      authorization: token,
+    });
     expect(res.statusCode).toBe(200);
-    done();
   });
-  it('update user should return success code', async (done) => {
+  it('update user should return success code', async () => {
     const res = await request
       .put('/users')
       .send({
-        firstname: 'firstname1',
-        lastname: 'lastname1',
+        firstname: 'name1',
+        lastname: 'name1',
         email: 'name@mail.com',
       })
-      .set({ authorization: token });
+      .set({
+        authorization: token,
+      });
     expect(res.statusCode).toBe(200);
-    done();
   });
 
-  it('delete user should return success code', async (done) => {
-    const res = await request.delete('/users/1').set({ authorization: token });
+  it('delete user should return success code', async () => {
+    const res = await request.delete('/users/2').set({
+      authorization: token,
+    });
     expect(res.statusCode).toBe(200);
-    done();
   });
 });
