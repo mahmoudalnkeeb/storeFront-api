@@ -1,9 +1,18 @@
 import supertest from 'supertest';
 import app from '../../server';
 const request = supertest(app);
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
+const secret = process.env.SECRET;
 
 describe('store api products', () => {
+  let token: string;
+  beforeAll(() => {
+    //@ts-ignore
+    token = jwt.sign({ first_name: 'name1', last_name: 'name1' }, secret);
+  });
   it('add product should return success code', async () => {
     const res = await request
       .post('/products')
@@ -13,8 +22,7 @@ describe('store api products', () => {
         category: 'products',
       })
       .set({
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjQ0OTE2Njg1fQ.-AiCmZD_uoUqTcjLymHFH1QWIhZ15Rmw6pI8Gpqim2k',
+        authorization: token,
       });
     expect(res.statusCode).toBe(200);
   });
@@ -38,8 +46,7 @@ describe('store api products', () => {
         category: 'products',
       })
       .set({
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjQ0OTE2Njg1fQ.-AiCmZD_uoUqTcjLymHFH1QWIhZ15Rmw6pI8Gpqim2k',
+        authorization: token,
       });
     expect(res.statusCode).toBe(200);
     done();
@@ -47,8 +54,7 @@ describe('store api products', () => {
 
   it('delete product should return success code', async (done) => {
     const res = await request.delete('/products/2').set({
-      authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjQ0OTE2Njg1fQ.-AiCmZD_uoUqTcjLymHFH1QWIhZ15Rmw6pI8Gpqim2k',
+      authorization: token,
     });
     expect(res.statusCode).toBe(200);
     done();
