@@ -35,15 +35,15 @@
 - ### enviroment variables
 
     #### database is running on default port (5432)
-            POSTGRES_HOST=database host
-            POSTGRES_USER=database user
-            POSTGRES_PASS=database password
-            POSTGRES_DB=production database name
-            POSTGRES_TEST_DB=testing database name
-            ENV=dev
-            SALT=SALT added to password 
-            HASH_ROUNDS="10"
-            SECRET=secert string to make token signeture
+        POSTGRES_HOST=database host
+        POSTGRES_USER=database user
+        POSTGRES_PASS=database password
+        POSTGRES_DB=production database name
+        POSTGRES_TEST_DB=testing database name
+        ENV=dev
+        SALT=SALT added to password 
+        HASH_ROUNDS="10"
+        SECRET=secert string to make token signeture
 - ### to build production && start
 
     `npm run start`
