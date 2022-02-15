@@ -7,6 +7,10 @@
     "start": "npm run tsc && node dist/server.js",
     "jasmine": "jasmine-ts",
     "test": "set ENV=test && jasmine-ts && db-migrate db:drop test &&  db-migrate down --env test -c 4 && db-migrate --env test up ",
+    "migrate-up": "db-migrate up",
+    "migrate-down": "db-migrate down -c 4",
+    "migrate-up-test": "db-migrate --env test up",
+    "migrate-down-test": "db-migrate --env test down -c 4",
     "tsc": "tsc",
     "prettier": "prettier --write ./src/**/*.ts",
     "lint": "eslint .eslintrc.js src/**/*.ts"

@@ -26,9 +26,10 @@
 
     `npm i -g db-migrate db-migrate-pg`
     
-    `db-migrate up`
-
-    `db-migrate up --env test` 
+        "npm run migrate-up" => migrate up production database
+        "npm run migrate-down" => migrate down production database
+        "npm run migrate-up-test" => migrate up testing database
+        "npm run migrate-down-test" => migrate down testing database
 
 
 - ### enviroment variables

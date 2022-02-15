@@ -1,16 +1,16 @@
 {
   "dev": {
     "driver": "pg",
-    "host": " set host here ",
-    "database": " set production database name here ",
-    "user": " set user here ",
-    "password": " set pass here "
+    "host": "127.0.0.1",
+    "database": { "ENV": "POSTGRES_DB" },
+    "user": { "ENV": "POSTGRES_USER" },
+    "password": { "ENV": "POSTGRES_PASS" }
   },
   "test": {
     "driver": "pg",
-    "host": " set host here ",
-    "database": " set testing database name here ",
-    "user": " set user here ",
-    "password": " set pass here "
+    "host": "127.0.0.1",
+    "database": { "ENV": "POSTGRES_TEST_DB" },
+    "user": { "ENV": "POSTGRES_USER" },
+    "password": { "ENV": "POSTGRES_PASS" }
   }
 }

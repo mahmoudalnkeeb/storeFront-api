@@ -60,4 +60,10 @@ These are the notes from a meeting with the frontend developer that describe wha
 - status of order | VARCHAR(10) (active or complete)
 - user_id | integer
 
+#### Order products Table [OPTIONAL]
+- id | integer 
+- quantity of each product in the order | integer
+- order_id | integer
+- user_id | integer
+
 
