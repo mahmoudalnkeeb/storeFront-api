@@ -60,8 +60,7 @@
 
     testing should run in specific order to prevent conflict bettween endpoints and models
   
-    `
-    "spec_files": [
+    `"spec_files": [
 
     "../src/models/tests/userSpec.ts",
 
@@ -70,9 +69,8 @@
     "../src/models/tests/orderSpec.ts",
 
     "../src/handlers/tests/usersSpec.ts",
-    
-    "../src/**/tests/*[sS]pec.ts"]
-    `
+
+    "../src/**/tests/*[sS]pec.ts"]`
 
 - ### linting 
 
