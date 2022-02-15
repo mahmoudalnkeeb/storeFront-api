@@ -8,7 +8,7 @@ export interface Order {
 }
 
 export class OrdersModel {
-  async addOrder(order: Order): Promise<Order> {
+  async addOrder(order: Order): Promise<Order | Error> {
     try {
       const sql =
         'INSERT INTO orders(quantity , order_status ,user_id) VALUES($1 , $2 , $3 ) RETURNING *';
@@ -22,10 +22,10 @@ export class OrdersModel {
       con.release();
       return data;
     } catch (err) {
-      throw err;
+      return new Error(`something went wrong ${err}`);
     }
   }
-  async ordersBuUser(user_id: number): Promise<Order[]> {
+  async ordersByUser(user_id: number): Promise<Order[] | Error> {
     try {
       const sql = 'SELECT * FROM orders WHERE user_id = $1';
       const con = await client.connect();
@@ -34,10 +34,10 @@ export class OrdersModel {
       con.release();
       return data;
     } catch (err) {
-      throw err;
+      return new Error(`something went wrong ${err}`);
     }
   }
-  async completedOrders(user_id: number): Promise<Order[]> {
+  async completedOrders(user_id: number): Promise<Order[] | Error> {
     try {
       const sql = 'SELECT * FROM orders WHERE user_id = $1 AND order_status=$2';
       const con = await client.connect();
@@ -46,10 +46,10 @@ export class OrdersModel {
       con.release();
       return data;
     } catch (err) {
-      throw err;
+      return new Error(`something went wrong ${err}`);
     }
   }
-  async deleteOrder(order_id: number): Promise<Order[]> {
+  async deleteOrder(order_id: number): Promise<Order[] | Error> {
     try {
       const sql = 'DELETE FROM orders WHERE id = $1 RETURNING *';
       const con = await client.connect();
@@ -58,10 +58,10 @@ export class OrdersModel {
       con.release();
       return data;
     } catch (err) {
-      throw err;
+      return new Error(`something went wrong ${err}`);
     }
   }
-  async completeOrder(order_id: number): Promise<Order> {
+  async completeOrder(order_id: number): Promise<Order | Error> {
     try {
       const sql = 'UPDATE orders SET order_status=$1 WHERE id=$2 RETURNING *';
       const con = await client.connect();
@@ -70,7 +70,7 @@ export class OrdersModel {
       con.release();
       return data;
     } catch (err) {
-      throw err;
+      return new Error(`something went wrong ${err}`);
     }
   }
 }

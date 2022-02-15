@@ -1,9 +1,12 @@
 import { Product, ProductsModel } from '../product';
-import dotenv from 'dotenv';
 
-dotenv.config();
-const secret = process.env.SECRET;
 const product = new ProductsModel();
+let originalTimeout: number;
+
+beforeEach(function () {
+  originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+});
 describe('product model test', () => {
   it('should have an index method', () => {
     expect(product.index).toBeDefined();
@@ -25,7 +28,7 @@ describe('product model test', () => {
     expect(product.destroy).toBeDefined();
   });
   //-----------------
-  it('should create product', async () => {
+  it('should create product', async (done) => {
     const res = await product.create({
       name: 'book',
       price: 15,
@@ -33,61 +36,69 @@ describe('product model test', () => {
     });
 
     expect(res).toEqual({
-      id: 1,
+      id: 2,
       name: 'book',
       price: 15,
       category: 'books',
     });
+    done();
   });
 
-  it('should return products list', async () => {
+  it('should return products list', async (done) => {
     const res = await product.index();
 
     expect(res).toEqual([
       {
-        id: 1,
+        id: 2,
         name: 'book',
         price: 15,
         category: 'books',
       },
     ]);
+    done();
   });
 
-  it('should return product with id = 1', async () => {
-    const res = await product.show(1);
+  it('should return product with id = 1', async (done) => {
+    const res = await product.show(2);
 
     expect(res).toEqual({
-      id: 1,
+      id: 2,
       name: 'book',
       price: 15,
       category: 'books',
     });
+    done();
   });
 
-  it('should update product', async () => {
+  it('should update product', async (done) => {
     const res = await product.update({
-      id: 1,
+      id: 2,
       name: 'book1',
       price: 10,
       category: 'books',
     });
 
     expect(res).toEqual({
-      id: 1,
+      id: 2,
       name: 'book1',
       price: 10,
       category: 'books',
     });
+    done();
   });
 
-  it('should delete product and return empty array', async () => {
-    const res = await product.destroy(1);
+  it('should delete product and return empty array', async (done) => {
+    const res = await product.destroy(2);
 
     expect(res).toEqual({
-      id: 1,
+      id: 2,
       name: 'book1',
       price: 10,
       category: 'books',
     });
+    done();
+  });
+  afterEach(function () {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 });

@@ -40,24 +40,24 @@ These are the notes from a meeting with the frontend developer that describe wha
     - '/orders/:id'[DELETE]
 
 ## Data Shapes
-#### Product
--  id
-- name
-- price
-- category
 
-#### User
-- id
-- firstName
-- lastName
-- email
-- password
+#### Product Table
+-  id | integer
+- name | VARCHAR(255)
+- price | integer
+- category | VARCHAR(100)
 
-#### Orders
-- id
-- quantity of each product in the order
-- status of order (active or complete)
-- id of each product in the order
-- user_id
+#### User Table
+- id | integer
+- firstName | VARCHAR(50)
+- lastName | VARCHAR(50)
+- email | VARCHAR(150)
+- password | VARCHAR(255)
+
+#### Orders Table
+- id | integer
+- quantity of each product in the order | integer
+- status of order | VARCHAR(10) (active or complete)
+- user_id | integer
 
 

@@ -10,9 +10,9 @@ export async function orderByUser(
   next: NextFunction
 ) {
   try {
-    const user_id = parseInt(req.params.user_id);
-    const OrderInfo = await Orders.ordersBuUser(user_id);
-    res.status(200).json(OrderInfo);
+    const user_id = parseInt(req.params.id);
+    const orderInfo = await Orders.ordersByUser(user_id);
+    res.status(200).json(orderInfo);
   } catch (error) {
     res.status(400);
     res.json({ message: 'something went wrong' });
@@ -25,9 +25,9 @@ export async function completedOrders(
   next: NextFunction
 ) {
   try {
-    const user_id = parseInt(req.params.user_id);
-    const OrderInfo = await Orders.completedOrders(user_id);
-    res.status(200).json(OrderInfo);
+    const user_id = parseInt(req.params.id);
+    const orderInfo = await Orders.completedOrders(user_id);
+    res.status(200).json(orderInfo);
   } catch (error) {
     res.status(400);
     res.json({ message: 'something went wrong' });
@@ -44,7 +44,7 @@ export async function addOrder(
   try {
     const order: Order = {
       quantity: req.body.quantity,
-      order_status: req.body.quantity,
+      order_status: 'active',
       user_id: req.body.user_id,
     };
     const newOrder = await Orders.addOrder(order);
@@ -64,8 +64,8 @@ export async function deleteOrder(
 ) {
   try {
     const id = req.params.id;
-    const OrderInfo = await Orders.deleteOrder(parseInt(id));
-    res.status(200).json(OrderInfo);
+    const orderInfo = await Orders.deleteOrder(parseInt(id));
+    res.status(200).json(orderInfo);
   } catch (error) {
     res.status(400);
     res.json({ message: `cannot find Order with id : ${req.params.id}` });
@@ -80,8 +80,8 @@ export async function completeOrder(
 ) {
   try {
     const id = req.params.id;
-    const OrderInfo = await Orders.completeOrder(parseInt(id));
-    res.status(200).json(OrderInfo);
+    const orderInfo = await Orders.completeOrder(parseInt(id));
+    res.status(200).json(orderInfo);
   } catch (error) {
     res.status(400);
     res.json({ message: `cannot find Order with id : ${req.params.id}` });

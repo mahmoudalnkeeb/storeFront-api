@@ -4,7 +4,7 @@ import * as productsRoutes from '../../handlers/products';
 import {verify} from '../../middlewares/authorization'; 
 
 // POST route to add new product
-router.post('/',verify,productsRoutes.create);//TODO add auth that requet from logged user
+router.post('/',verify,productsRoutes.create);//TODO add auth that requet from logged 
 
 // GET route to show all products
 router.get('/',productsRoutes.index );

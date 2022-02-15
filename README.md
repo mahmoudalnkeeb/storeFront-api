@@ -33,6 +33,8 @@
 
 - ### enviroment variables
 
+    #### database is running on default port (5432)
+
 <code>
 
     POSTGRES_HOST=database host
